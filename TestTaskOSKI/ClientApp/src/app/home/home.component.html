@@ -1,0 +1,19 @@
+<h1>Tests is here</h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Test Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tests">
+        <td>{{t.name}}</td>
+        <td>
+          <button type="button" [routerLink]="['/test/'+ t.id]"> Start </button>
+        </td>
+</tr>
+    </tbody>
+  </table>
+</div>

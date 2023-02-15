@@ -1,0 +1,45 @@
+<ng-container *ngIf="idx==0">
+  <h1>{{test.name}}</h1>
+  <div>
+    <p>{{test.description}}</p>
+  </div>
+  <div>
+    <input type="checkbox" [checked]="checkbox" (change)="checkbox=!checkbox" />
+    <p>I agree to Start</p>
+    <br />
+    <button [disabled]="!checkbox" (click)="idxPlus()">Proceed</button>
+  </div>
+</ng-container>
+<div *ngFor="let q of test.questions">
+  <div *ngIf="idx==q.questionNumber">
+    <h3>{{q.title}}</h3><br/>
+    <p>{{q.description}}</p>
+    <div>
+      <ul *ngFor="let answ of q.answers">
+        <li (click)="nextQ(q.questionNumber,answ)">
+          <label><input type="radio" name="answers" value="{{answ.title}}" />{{answ.title}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="idx>test.questions!.length">
+  <h1>Test Result</h1>
+  <table>
+    <thead>
+      <tr>
+        <th> Question Number</th>
+        <th> Answer</th>
+        <th>Is Correct</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of answers">
+        <td>{{r.questionNumber}}</td>
+        <td>{{r.answer.title}}</td>
+        <td>{{r.answer.isCorrect}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" [routerLink]="['/']"> Back </button>
+</ng-container>
